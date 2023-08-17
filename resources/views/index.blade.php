@@ -225,7 +225,7 @@
       </div>
 
       <div class="index-btn-wrapper">
-        <div class="index-btn" onclick="run(4, 3);">Previous</div>
+        <div class="index-btn" onclick=" run(4, 3);">Previous</div>
         <button class="index-btn" type="submit" name="submit" style="background: blue;">Submit</button>
       </div>
     </div>
