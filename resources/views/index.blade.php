@@ -97,6 +97,20 @@
         @enderror --}}
       </div>
 
+      <!-- form tambahan untuk pilih tujuan kunjungan -->
+      <div class="form-group mb-3">
+        <label class="purpose" for="purposevtwo" style="color:#000000">Tujuan Kunjungan</label>
+        <select class="custom-select my-1 mr-sm-2" name="purposevtwo" id="purposevtwo" required>
+          <option selected disabled></option>
+          @foreach ($purposevoltwo as $purpose2)
+            <option value="{{ $purpose2->id }}">{{ $purpose2->purposevtwo }}</option>
+          @endforeach
+            <option value="other1">Kunjungan</option>
+            <option value="other2">Permintaan Data</option>
+        </select>
+      </div>
+      <br><br>
+
       <div class="index-btn-wrapper">
         <div class="index-btn" onclick="run(1, 2);">Next</div>
       </div>

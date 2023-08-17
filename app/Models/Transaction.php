@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +10,7 @@ class Transaction extends Model
     use HasFactory;
     protected $guarded=['id'];
     protected $table = "transactions";
-    protected $fillable = ['id_customer','id_media','id_service','id_purpose','data','id_sub_categories','status'];
+    protected $fillable = ['id_customer','id_media','id_service','id_purpose','id_purposevtwo','data','id_sub_categories','status'];
 
     // public function Customer(){
     //     return $this->belongsTo(Customer::class);
@@ -30,6 +29,9 @@ class Transaction extends Model
 
     public function Purpose(){
         return $this->belongsTo(Purpose::class, 'id_purpose');
+    }
+    public function Purposev2(){
+        return $this->belongsTo(purposevolumetwo::class, 'id_purposevtwo');
     }
 
     public function SubCategory(){
@@ -59,6 +61,7 @@ class Transaction extends Model
         ->join('media', 'transactions.id_media', '=', 'media.id')
         ->join('service', 'transactions.id_service', '=', 'service.id')
         ->join('purpose', 'transactions.id_purpose', '=', 'purpose.id')
+        ->join('purposevolumetwos', 'transactions.id_purposevtwo', '=', 'purposevolumetwos.id')
         ->join('sub_categories', 'transactions.id_sub_categories', '=', 'sub_categories.id')
         ->select('customer.name', 'media.media_type', 'service.service_type','purpose.purpose_type','sub_categories.sub_categories_type')
         ->get()->toArray();

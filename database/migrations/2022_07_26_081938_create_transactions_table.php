@@ -23,6 +23,8 @@ return new class extends Migration
             $table->foreign('id_service')->references('id')->on('service');
             $table->unsignedBigInteger('id_purpose');
             $table->foreign('id_purpose')->references('id')->on('purpose');
+            $table->unsignedBigInteger('id_purposevtwo');
+            $table->foreign('id_purposevtwo')->references('id')->on('purposevolumetwos');
             $table->string('data');
             $table->unsignedBigInteger('id_sub_categories');
             $table->foreign('id_sub_categories')->references('id')->on('sub_categories');
