@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('transactions', function (Blueprint $table) {
-        //      $table->dropColumn(['service', 'facility', 'dataqualities']);
-        // });
+        Schema::create('tujuan_kunjungans', function (Blueprint $table) {
+            $table->id();
+            $table->string('tujuankunjungan_type');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,10 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('transactions', function (Blueprint $table) {
-            $table->integer('service');
-            $table->integer('facility');
-            $table->integer('dataqualities');
-        });
+        Schema::dropIfExists('tujuan_kunjungans');
     }
-}; 
+};

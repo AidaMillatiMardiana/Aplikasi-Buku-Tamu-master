@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\User\GuestController;
+use App\Http\Controllers\User\GuestKunjunganController;
+use App\Http\Controllers\User\GuestPermintaanDataController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\JobController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\RingkasanController;
 Route::get('/bukutamu', [GuestController::class, 'formTamu'])->name('/');
 Route::post('/cekcustomer', [GuestController::class, 'cekcustomer'])->name('cekcustomer');
 Route::resource('formTamu', GuestController::class);
+
 
 /**
  * Route Uji Coba Validasi

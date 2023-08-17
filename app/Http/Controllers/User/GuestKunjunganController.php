@@ -10,7 +10,6 @@ use App\Models\Media;
 use App\Models\Service;
 use App\Models\SubCategory;
 use App\Models\Purpose;
-use App\Models\purposevolumetwo;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +22,7 @@ use Validator;
 
 
 
-class GuestController extends Controller
+class GuestKunjunganController extends Controller
 {
     public function formTamu() {
         $job = Job::all();
@@ -31,11 +30,10 @@ class GuestController extends Controller
         $media = Media::all();
         $service = Service::all();
         $purpose = Purpose::all();
-        $purposevoltwo = purposevolumetwo::all();
         $sub_categories = SubCategory::all();
         $categories = Category::all();
 
-        return view('/index', compact('job','education','media','service','sub_categories','categories','purpose', 'purposevoltwo'));
+        return view('/index', compact('job','education','media','service','sub_categories','categories','purpose'));
         return dd(Session::all());
         // $purpose = Purpose::all();
 
