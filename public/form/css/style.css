@@ -44,15 +44,17 @@ form {
     border: 1px solid #aaaaaa;
   }
   
-  .index-btn-wrapper{
+  .index-btn-wrapper {
     display: flex;
+    justify-content: center; /* Untuk meletakkan elemen secara horizontal di tengah */
+    margin-top: 20px; /* Menambahkan jarak dari atas */
   }
   
   .center-content {
     text-align: center; /* Untuk meletakkan elemen secara horizontal di tengah */
   }
-
-  .index-btn{
+  
+  .index-btn {
     background: rgb(124, 162, 237);
     color: #ffffff;
     border: none;
@@ -64,9 +66,10 @@ form {
     border-radius: 25px;
   }
   
-  .index-btn:hover{
+  .index-btn:hover {
     box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
   }
+  
   
 /* Kode CSS yang telah Anda berikan */
 .step-container {

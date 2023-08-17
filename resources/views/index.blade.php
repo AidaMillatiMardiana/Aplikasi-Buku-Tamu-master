@@ -97,10 +97,40 @@
         @enderror --}}
       </div>
 
+      <div class="form-group mb-3">
+    <label class="purpose" for="purpose" style="color:#000000">Tujuan</label>
+    <select class="custom-select my-1 mr-sm-2" name="purpose" id="purpose" value="{{ collect(old('purpose')) }}" required style="font-size: 14px;">
+        <option selected="false" disabled="disabled">
+        <option value="Kunjungan">Kunjungan</option>
+        <option value="Permintaan Data">Permintaan Data</option>
+    </select>
+</div>
+
       <div class="index-btn-wrapper">
         <div class="index-btn" onclick="run(1, 2);">Next</div>
       </div>
     </div>
+
+    <div class="tab" id="tab-2">
+    <h3 style="text-align: center; font-family: sans-serif;">Kunjungan</h3>
+
+      {{-- <div class="input-group">
+      <label for="instansi" style="color:#000000">Asal Instansi</label>
+      <input type="text" name="instansi" id="instansi" class="form-control" placeholder="Silakan isi asal instansi" />
+  </div>
+  --}}
+
+  {{-- <div class="form-group mb-3">
+    <label class="purposevisit" for="purposevisit" style="color:#000000">Tujuan Kunjungan</label>
+    <select class="custom-select my-1 mr-sm-2" name="purposevisit" id="purposevisit" value="{{ collect(old('purposevisit')) }}" required style="font-size: 14px;">
+        <option selected="false" disabled="disabled">Pilih Tujuan Kunjungan</option>
+        <option value="Penyerahan data">Penyerahan Data</option>
+        <option value="Evaluasi">Evaluasi</option>
+        <option value="Silaturahmi">Silaturahmi</option>
+        <option value="Lain-lain">Lain-lain</option>
+    </select>
+</div>
+--}} 
 
     <div class="tab" id="tab-2">
     <h3 style="text-align: center; font-family: sans-serif;">Riwayat Pendidikan</h3>
@@ -116,7 +146,7 @@
       </div>
 
       <div class="input-group">
-        <label for="nipnim" style="color:#000000">NIP/NIM</label>
+        <label for="nipnim" style="color:#000000">NIM/NPM</label>
         <input type="text" name="nipnim" id="nipnim" class="form-control" placeholder="Silakan isi nip/nim anda"
           maxlength="20" value="{{old('nipnim')}}" onkeypress="return event.charCode >= 48 && event.charCode <=57"
           data-parsley-type="integer" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
