@@ -38,7 +38,7 @@
 
       <div class="input-group">
         <label for="name" style="color:#000000">Nama Lengkap</label>
-        <input type="text" name="name" id="name" placeholder="Silahkan isi nama anda" maxlength="30"
+        <input type="text" name="name" id="name" placeholder="Silakan isi nama anda" maxlength="30"
             value="{{old('name')}}" data-parsley-minwords="3" data-parsley-maxwords="30"
             data-parsley-pattern="/(^[a-zA-Z][a-zA-Z\s]{0,30}[a-zA-Z]$)/" data-parsley-trigger="keyup" required
             style="font-size: 14px;" />
@@ -49,7 +49,7 @@
 
       <div class="input-group">
       <label for="name" style="color:#000000">No Handphone</label>
-        <input type="text" name="hp" id="hp" class="form-control" placeholder="Silahkan isi no handphone anda"
+        <input type="text" name="hp" id="hp" class="form-control" placeholder="Silakan isi no handphone anda"
           minlength="8" maxlength="13" value="{{old('hp')}}" data-parsley-type="integer" data-parsley-trigger="keyup"
           required style="font-size: 14px;" />
         {{-- @error('hp')
@@ -68,12 +68,12 @@
 
       {{-- <div class="input-group">
         <label for="email" style="color:#000000">Email</label>
-        <input type="email" name="email" id="email" class="form-control" placeholder="Silahkan isi email anda" />
+        <input type="email" name="email" id="email" class="form-control" placeholder="Silakan isi email anda" />
       </div> --}}
 
       <div class="input-group">
         <label for="email" style="color:#000000">Email</label>
-        <input type="text" name="email" id="email" class="form-control" placeholder="Silahkan isi email anda"
+        <input type="text" name="email" id="email" class="form-control" placeholder="Silakan isi email anda"
           maxlength="35" value="{{old('email')}}" data-parsley-type="email" data-parsley-trigger="keyup"
           data-parsley-error-message="Email anda tidak mengandung '@gmail.com'" required style="font-size: 14px;" />
         {{-- @error('email')
@@ -83,13 +83,13 @@
 
       <div class="input-group">
         <label for="address" style="color:#000000">Alamat</label>
-        <input type="text" name="address" id="address" class="form-control" placeholder="Silahkan isi alamat anda"
+        <input type="text" name="address" id="address" class="form-control" placeholder="Silakan isi alamat anda"
           maxlength="50" value="{{old('address')}}" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
       </div>
 
       <div class="input-group">
         <label for="age" style="color:#000000">Usia</label>
-        <input type="text" name="age" id="age" class="form-control" placeholder="Silahkan isi umur anda (contoh: 27)"
+        <input type="text" name="age" id="age" class="form-control" placeholder="Silakan isi umur anda (contoh: 27)"
           maxlength="3" value="{{old('age')}}" onkeypress="return event.charCode >= 48 && event.charCode <=57"
           data-parsley-type="integer" data-parsley-trigger="keyup" required style="font-size: 14px;" />
         {{-- @error('age')
@@ -122,7 +122,7 @@
       <div class="input-group">
         <label for="institute" style="color:#000000">Nama instansi</label>
         <input type="text" name="institute" id="institute" class="form-control"
-          placeholder="Silahkan isi nama instansi anda" maxlength="35" value="{{old('institute')}}"
+          placeholder="Silakan isi nama instansi anda" maxlength="35" value="{{old('institute')}}"
           data-parsley-pattern="/(^[a-zA-Z][a-zA-Z\s]{0,35}[a-zA-Z]$)/" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
         {{-- @error('institute')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -131,7 +131,7 @@
 
       <div class="input-group">
         <label for="nipnim" style="color:#000000">NIP/NIM</label>
-        <input type="text" name="nipnim" id="nipnim" class="form-control" placeholder="Silahkan isi nip/nim anda"
+        <input type="text" name="nipnim" id="nipnim" class="form-control" placeholder="Silakan isi nip/nim anda"
           maxlength="20" value="{{old('nipnim')}}" onkeypress="return event.charCode >= 48 && event.charCode <=57"
           data-parsley-type="integer" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
         {{-- @error('nipnim')
@@ -142,7 +142,7 @@
       <div class="form-group mb-3">
         <label class="label" for="job" style="color:#000000">Pekerjaan</label>
         <select class="custom-select my-1 mr-sm-2" name="job" id="job" required style="font-size: 14px;">
-          <option selected="false" disabled="disabled">Silahkan Pilih Pekerjaan</option>
+          <option selected="false" disabled="disabled">Silakan Pilih Pekerjaan</option>
           @foreach ($job as $p)
           <option value="{{ $p->id }}">{{$p->job_type}}</option>
           @endforeach
@@ -152,7 +152,7 @@
       <div class="form-group mb-3">
         <label class="label" for="education" style="color:#000000">Pendidikan</label>
         <select class="custom-select my-1 mr-sm-2" name="education" id="education" required style="font-size: 14px;">
-          <option selected="false" disabled="disabled">Silahkan Pilih Pendidikan</option>
+          <option selected="false" disabled="disabled">Silakan Pilih Pendidikan</option>
           @foreach ($education as $p)
           <option value="{{ $p->id }}">{{$p->education_type}}</option>
           @endforeach
@@ -172,7 +172,7 @@
         <div class="form-group mb-3">
           <label class="label" for="media" style="color:#000000">Media Pelayanan</label>
           <select class="custom-select my-1 mr-sm-2" name="media" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silahkan Pilih Media Pelayanan</option>
+            <option selected="false" disabled="disabled">Silakan Pilih Media Pelayanan</option>
             @foreach ($media as $p)
             <option value="{{ $p->id }}">{{$p->media_type}}</option>
             @endforeach
@@ -184,7 +184,7 @@
         <div class="form-group mb-3">
           <label class="label" for="media" style="color:#000000">Kebutuhan Data</label>
           <select class="custom-select my-1 mr-sm-2" name="sub_categories" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silahkan Pilih Kebutuhan Data</option>
+            <option selected="false" disabled="disabled">Silakan Pilih Kebutuhan Data</option>
             @foreach($categories as $group)
             <optgroup label="{{$group->categories_type }}">
               @foreach ($sub_categories as $s)
@@ -202,7 +202,7 @@
         <div class="form-group mb-3">
           <label class="label" for="service" style="color:#000000">Jenis Pelayanan</label>
           <select class="custom-select my-1 mr-sm-2" name="service" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silahkan Pilih Jenis Pelayanan</option>
+            <option selected="false" disabled="disabled">Silakan Pilih Jenis Pelayanan</option>
             @foreach ($service as $j)
             <option value="{{ $j->id }}">{{$j->service_type}}</option>
             @endforeach
@@ -223,7 +223,7 @@
         <div class="form-group mb-3">
           <label class="label" for="purpose" style="color:#000000">Tujuan</label>
           <select class="custom-select my-1 mr-sm-2" name="purpose" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silahkan Pilih Tujuan</option>
+            <option selected="false" disabled="disabled">Silakan Pilih Tujuan</option>
             @foreach ($purpose as $p)
             <option value="{{ $p->id }}">{{$p->purpose_type}}</option>
             @endforeach
@@ -233,7 +233,7 @@
 
       <div class="input-group">
         <label for="data" style="color:#000000">Data</label>
-        <textarea type="text" name="data" id="data" placeholder="Silahkan isi data spesifik yang anda perlukan"
+        <textarea type="text" name="data" id="data" placeholder="Silakan isi data spesifik yang anda perlukan"
           class="form-control" rows="10" cols="55" maxlength="50" value="{{old('data')}}"
           onkeypress="return event.charCode < 48 || event.charCode>57" data-parsley-trigger="keyup" required style="font-size: 14px;"></textarea>
       </div>
