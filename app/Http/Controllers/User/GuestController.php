@@ -141,6 +141,7 @@ class GuestController extends Controller
     }
 
     public function saveGuest(Request $request){
+        dd($request()->all());
         /**
          * Validate - Laravel Basic - bimasakti.kr
          * #1 Define validate Submit Button
@@ -151,7 +152,7 @@ class GuestController extends Controller
         // ]);
 
         // if($validator->passes()){
-            dd($request->all());
+            
             $name   = $request->name;
             $hp = $request->hp;
             $email   = $request->email;
