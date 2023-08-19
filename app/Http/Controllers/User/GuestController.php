@@ -11,6 +11,7 @@ use App\Models\Service;
 use App\Models\SubCategory;
 use App\Models\Purpose;
 use App\Models\purposevolumetwo;
+use App\Models\TujuanKunjungan;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -34,8 +35,9 @@ class GuestController extends Controller
         $purposevoltwo = purposevolumetwo::all();
         $sub_categories = SubCategory::all();
         $categories = Category::all();
+        $tujuankunjungan = TujuanKunjungan::all();
 
-        return view('/index', compact('job','education','media','service','sub_categories','categories','purpose', 'purposevoltwo'));
+        return view('/index', compact('job','education','media','service','sub_categories','categories','purpose', 'purposevoltwo', 'tujuankunjungan'));
         return dd(Session::all());
         // $purpose = Purpose::all();
 
@@ -117,14 +119,24 @@ class GuestController extends Controller
 
                     return response()->json(['error'=>$validator->errors()->all()]);
                     break;
+                case 5 :
+                    $validator = Validator::make($request->all(), [
+                        'institute' => 'required|min:10',
+                        'tujuankunjungan' => 'required|min:1',
+                    ]);
+                    if ($validator->passes()) {
+                        return response()->json(['success'=>'Lolos Validasi #1']);
+                    }
+
+                    return response()->json(['error'=>$validator->errors()->all()]);
+                    break;
+
                 }
 
             }
         } else {
             return response()->json(['error'=>$validator->errors()->all()]);
         }
-
-
 
     }
 
@@ -139,6 +151,7 @@ class GuestController extends Controller
         // ]);
 
         // if($validator->passes()){
+            dd($request->all());
             $name   = $request->name;
             $hp = $request->hp;
             $email   = $request->email;
@@ -151,6 +164,7 @@ class GuestController extends Controller
             $education = $request->education;
             $purpose = $request->purpose;
             $sub_categories =$request->sub_categories;
+            $tujuankunjungan =$request->tujuankunjungan;
 
             if (Customer::where('hp', $hp)->exists()){
                 /**
@@ -171,6 +185,9 @@ class GuestController extends Controller
                $transaction->data=$request->data;
                $transaction->id_sub_categories=$request->sub_categories;
                $transaction->save();
+               $tujuankunjungan = new TujuanKunjungan();
+               $tujuankunjungan->tujuankunjungan_type=$request->tujuankunjungan;
+               $tujuankunjungan->save();
 
                Alert::success("Success", "Terimakasih  $name  Sudah menggunakan layanan kami");
                return redirect('/');
@@ -189,6 +206,7 @@ class GuestController extends Controller
                $data->address = $address;
                $data->id_job = $job;
                $data->id_education = $education;
+               $data->tujuankunjungan = $tujuankunjungan;
                $data->save();
 
 
@@ -210,6 +228,7 @@ class GuestController extends Controller
                $transaction->id_purpose=$request->purpose;
                $transaction->data=$request->data;
                $transaction->id_sub_categories=$request->sub_categories;
+               $transaction->tujuankunjungan=$request->tujuankunjungan;
                $transaction->save();
 
                Alert::success("Success", "Terimakasih  $name  Sudah menggunakan layanan kami");

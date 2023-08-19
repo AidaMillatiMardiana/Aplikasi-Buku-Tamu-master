@@ -27,10 +27,9 @@
   <span class="step" id="step-2"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
   <span class="step" id="step-3"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
   <span class="step" id="step-4"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
+  <span class="step" id="step-5"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
 </div>
 <br>
-
-    
 
 
     <div class="tab" id="tab-1">
@@ -105,8 +104,7 @@
           @foreach ($purposevoltwo as $purpose2)
             <option value="{{ $purpose2->id }}">{{ $purpose2->purposevtwo }}</option>
           @endforeach
-            <option value="other1">Kunjungan</option>
-            <option value="other2">Permintaan Data</option>
+
         </select>
       </div>
       <br><br>
@@ -241,130 +239,188 @@
       <div class="index-btn-wrapper">
         <div class="index-btn" onclick=" run(4, 3);">Previous</div>
         <button class="index-btn" type="submit" name="submit" style="background: blue;">Submit</button>
+
+      </div>
+    </div>
+    
+    <div class="tab" id="tab-5">
+    <h3 style="text-align: center; font-family: sans-serif;">Form Kunjungan</h3>
+    <!-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif -->
+      <div class="input-group">
+        <label for="institute" style="color:#000000">Asal instansi</label>
+        <input type="text" name="institute" id="institute" class="form-control"
+          placeholder="Silakan isi nama instansi anda" maxlength="35" value="{{old('institute')}}"
+          data-parsley-pattern="/(^[a-zA-Z][a-zA-Z\s]{0,35}[a-zA-Z]$)/" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
+        {{-- @error('institute')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror --}}
+      </div>
+      <div class="input-group">
+        <div class="form-group mb-3">
+          <label class="label" for="tujuankunjungan" style="color:#000000">Tujuan Kujungan</label>
+          <select class="custom-select my-1 mr-sm-2" name="tujuankunjungan" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
+            <option selected="false" disabled="disabled">Silakan Pilih Tujuan Kunjungan</option>
+            @foreach ($tujuankunjungan as $p)
+            <option value="{{ $p->id }}">{{$p->tujuankunjungan_type}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick=" run(5, 1);">Previous</div>
+        <button class="index-btn" type="submit" name="submit" style="background: blue;">Submit</button>
       </div>
     </div>
   </form>
 
-  <script type="text/javascript">
-    $(function(){
-      $("#myForm").parsley();
-    })
-      // Default tab
-      $(".tab").css("display", "none");
-      $("#tab-1").css("display", "block");
+<!-- ... Your existing HTML and script ... -->
 
-      function run(hideTab, showTab){
-        if(hideTab < showTab){ // If not press previous button
-          // Validation if press next button
-          var currentTab = 0;
-          x = $('#tab-'+hideTab);
-          y = $(x).find("input")
-          z = $(x).find("select")
-          for (i = 0; i < y.length; i++){
-            if (y[i].value == ""){
-              $(y[i]).css("background", "#ffdddd");
-              return false;
-            }
-          }
-          for (i = 0; i < z.length; i++){
-            if (z[i].value == ""){
-              $(z[i]).css("background", "#ffdddd");
-              return false;
-            }
-          }
+<script type="text/javascript">
+  $(function(){
+    $("#myForm").parsley();
+  })
+
+  // Default tab
+  $(".tab").css("display", "none");
+  $("#tab-1").css("display", "block");
+
+  function run(hideTab, showTab){
+    if(hideTab < showTab){ // If not press previous button
+      // Validation if press next button
+      var currentTab = 0;
+      x = $('#tab-'+hideTab);
+      y = $(x).find("input")
+      z = $(x).find("select")
+      for (i = 0; i < y.length; i++){
+        if (y[i].value == ""){
+          $(y[i]).css("background", "#ffdddd");
+          return false;
         }
-
-        // Progress bar
-        for (i = 1; i < showTab; i++){
-          $("#step-"+i).css("opacity", "1");
-        }
-
-        // Switch tab
-        $("#tab-"+hideTab).css("display", "none");
-        $("#tab-"+showTab).css("display", "block");
-        $("input").css("background", "#fff");
       }
-
-
-      $('#hp').on('keyup', function (){
-
-        $value = $(this).val();
-        // alert ($value);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        // alert ($value);
-        $.ajax({
-
-          type      : 'post',
-          url       : '{{ URL::to('cekcustomer') }}',
-          dataType  : 'json',
-          data      : {'search':$value},
-          success   : function(data)
-          {
-            
-              // dataconv = JSON.parse(data);
-            $.each(data, function (i, id) { 
-              // var $dataString = JSON.stringify(data)
-              // console.log(data[0].name);
-              // alert(data[0].address);
-
-              $('#name').val(data[0].name).attr('readonly', true).css('background-color' , '#DEDEDE').attr('disabled', true);
-              $("#gender option[value="+data[0].gender).attr('selected', 'true');
-              $("#gender").attr('disabled', true);
-              $('#email').val(data[0].email).attr('readonly', true).css('background-color' , '#DEDEDE');
-              $('#address').val(data[0].address).attr('readonly', true).css('background-color' , '#DEDEDE');
-              $('#age').val(data[0].age).attr('readonly', true).css('background-color' , '#DEDEDE');
-              $('#institute').val(data[0].institute).attr('readonly', true).css('background-color' , '#DEDEDE');
-              $('#nipnim').val(data[0].nipnim).attr('readonly', true).css('background-color' , '#DEDEDE');
-              $("#job option[value='"+data[0].id_job).attr('selected', 'true');
-              $("#job").attr('disabled', true);
-              $("#education option[value='"+data[0].id_education).attr('selected', 'true');
-              $("#education").attr('disabled', true);
-            });
-          
-          }
-        });
-      })
-
-
-      $(document).ready (function() {
-        $('#myForm').formValidation({
-        framework: 'bootstrap',
-        excluded: 'disabled',
-        icon: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            emailUser: {
-            validators: {
-            notEmpty: {
-            message: 'Email Tidak Boleh Kosong'
-            },
-            emailAddress: {
-            message: 'Email Tidak Valid'
-            }
-            }
-            },
+      for (i = 0; i < z.length; i++){
+        if (z[i].value == ""){
+          $(z[i]).css("background", "#ffdddd");
+          return false;
         }
-        })
-        });
+      }
+    }
 
-        // function ValidateEmail(mail)
-        // {
-        // if (/mysite@ourearth.com/.test(emailUser))
-        // {
-        // return (true)
-        // }
-        // alert("Masukkan e-Mail Dengan Ben0ar")
-        // return (false)
-        // }
+    // Progress bar
+    for (i = 1; i < showTab; i++){
+      $("#step-"+i).css("opacity", "1");
+    }
 
-  </script>
+    // Switch tab
+    $("#tab-"+hideTab).css("display", "none");
+    $("#tab-"+showTab).css("display", "block");
+    $("input").css("background", "#fff");
+  }
+
+  // Add change event listener to "Tujuan Kunjungan" dropdown
+  $("#purposevtwo").change(function() {
+    if (this.value === "1") { // "Kunjungan"
+      run(1, 5); // Go to Form Kunjungan tab
+    } else if (this.value === "2") { // "Permintaan Data"
+      run(1, 2); // Go to Riwayat Pendidikan tab
+    }
+  });
+
+  $('#hp').on('keyup', function (){
+
+$value = $(this).val();
+// alert ($value);
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+    }
+});
+// alert ($value);
+$.ajax({
+
+  type      : 'post',
+  url       : '{{ URL::to('cekcustomer') }}',
+  dataType  : 'json',
+  data      : {'search':$value},
+  success   : function(data)
+  {
+    
+      // dataconv = JSON.parse(data);
+    $.each(data, function (i, id) { 
+      // var $dataString = JSON.stringify(data)
+      // console.log(data[0].name);
+      // alert(data[0].address);
+
+      $('#name').val(data[0].name).attr('readonly', true).css('background-color' , '#DEDEDE').attr('disabled', true);
+      $("#gender option[value="+data[0].gender).attr('selected', 'true');
+      $("#gender").attr('disabled', true);
+      $('#email').val(data[0].email).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#address').val(data[0].address).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#age').val(data[0].age).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#institute').val(data[0].institute).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#nipnim').val(data[0].nipnim).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $("#job option[value='"+data[0].id_job).attr('selected', 'true');
+      $("#job").attr('disabled', true);
+      $("#education option[value='"+data[0].id_education).attr('selected', 'true');
+      $("#education").attr('disabled', true);
+      $("#tujuankunjungan option[value="+data[0].tujuankunjungan).attr('selected', 'true');
+      $("#tujuankunjungan").attr('disabled', true);
+    });
+  
+  }
+});
+})
+
+
+$(document).ready (function() {
+$('#myForm').formValidation({
+framework: 'bootstrap',
+excluded: 'disabled',
+icon: {
+valid: 'glyphicon glyphicon-ok',
+invalid: 'glyphicon glyphicon-remove',
+validating: 'glyphicon glyphicon-refresh'
+},
+fields: {
+    emailUser: {
+    validators: {
+    notEmpty: {
+    message: 'Email Tidak Boleh Kosong'
+    },
+    emailAddress: {
+    message: 'Email Tidak Valid'
+    }
+    }
+    },
+}
+})
+});
+
+// function ValidateEmail(mail)
+// {
+// if (/mysite@ourearth.com/.test(emailUser))
+// {
+// return (true)
+// }
+// alert("Masukkan e-Mail Dengan Ben0ar")
+// return (false)
+// }
+
+  // Rest of your code...
+</script>
+
+</body>
+
+</html>
+
 
 
 </body>
