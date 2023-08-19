@@ -110,7 +110,7 @@
       <br><br>
 
       <div class="index-btn-wrapper">
-        <div class="index-btn" onclick="run(1, 2);">Next</div>
+        <!-- <div class="index-btn" onclick="run(1, 2);">Next</div> -->
       </div>
     </div>
 
@@ -238,6 +238,7 @@
 
       <div class="index-btn-wrapper">
         <div class="index-btn" onclick=" run(4, 3);">Previous</div>
+        <!-- <div class="index-btn" onclick="run(4, 5);">Next</div> -->
         <button class="index-btn" type="submit" name="submit" style="background: blue;">Submit</button>
 
       </div>

@@ -36,9 +36,9 @@ class GuestController extends Controller
         $sub_categories = SubCategory::all();
         $categories = Category::all();
         $tujuankunjungan = TujuanKunjungan::all();
-
+// dd($tujuankunjungan);
         return view('/index', compact('job','education','media','service','sub_categories','categories','purpose', 'purposevoltwo', 'tujuankunjungan'));
-        return dd(Session::all());
+        // return dd(Session::all());
         // $purpose = Purpose::all();
 
         // return view('/index', compact('job','education','media','service','sub_categories','purpose'));
@@ -48,6 +48,7 @@ class GuestController extends Controller
      *  Function untuk validasi Ajax
      */
     public function validationForm(Request $request){
+        // dd($request()->all());
         if ($request->status == ""){
             $validator = Validator::make($request->all(), [
                 'hp' => [   'required', 'between:10,15',
@@ -141,7 +142,6 @@ class GuestController extends Controller
     }
 
     public function saveGuest(Request $request){
-        dd($request()->all());
         /**
          * Validate - Laravel Basic - bimasakti.kr
          * #1 Define validate Submit Button
@@ -229,8 +229,11 @@ class GuestController extends Controller
                $transaction->id_purpose=$request->purpose;
                $transaction->data=$request->data;
                $transaction->id_sub_categories=$request->sub_categories;
-               $transaction->tujuankunjungan=$request->tujuankunjungan;
+            //    $transaction->tujuankunjungan=$request->tujuankunjungan;
                $transaction->save();
+               $tujuankunjungan = new TujuanKunjungan();
+               $tujuankunjungan->tujuankunjungan_type=$request->tujuankunjungan;
+               $tujuankunjungan->save();
 
                Alert::success("Success", "Terimakasih  $name  Sudah menggunakan layanan kami");
                return redirect('/');
