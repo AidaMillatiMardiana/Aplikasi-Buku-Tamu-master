@@ -30,6 +30,11 @@
   <span class="step" id="step-5"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
 </div>
 <br>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
     <div class="tab" id="tab-1">
     <h3 style="text-align: center; font-family: sans-serif;">Informasi Pribadi</h3>
 
@@ -102,9 +107,20 @@
           @foreach ($purposevoltwo as $purpose2)
             <option value="{{ $purpose2->id }}">{{ $purpose2->purposevtwo }}</option>
           @endforeach
+<<<<<<< HEAD
         </select>
       </div>
       <br><br>
+=======
+
+        </select>
+      </div>
+      <br><br>
+
+      <div class="index-btn-wrapper">
+        <!-- <div class="index-btn" onclick="run(1, 2);">Next</div> -->
+      </div>
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
     </div>
 
     
@@ -266,12 +282,73 @@
           <button class="index-btn" type="submit" name="submit" id="btn-submit-2" style="background: blue;">Submit</button>
         </div>
       </div>
+<<<<<<< HEAD
+=======
+
+      <div class="input-group">
+        <label for="data" style="color:#000000">Data</label>
+        <textarea type="text" name="data" id="data" placeholder="Silakan isi data spesifik yang anda perlukan"
+          class="form-control" rows="10" cols="55" maxlength="50" value="{{old('data')}}"
+          onkeypress="return event.charCode < 48 || event.charCode>57" data-parsley-trigger="keyup" required style="font-size: 14px;"></textarea>
+      </div>
+
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick=" run(4, 3);">Previous</div>
+        <!-- <div class="index-btn" onclick="run(4, 5);">Next</div> -->
+        <button class="index-btn" type="submit" name="submit" style="background: blue;">Submit</button>
+
+      </div>
+    </div>
+    
+    <div class="tab" id="tab-5">
+    <h3 style="text-align: center; font-family: sans-serif;">Form Kunjungan</h3>
+    <!-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif -->
+      <div class="input-group">
+        <label for="institute" style="color:#000000">Asal instansi</label>
+        <input type="text" name="institute" id="institute" class="form-control"
+          placeholder="Silakan isi nama instansi anda" maxlength="35" value="{{old('institute')}}"
+          data-parsley-pattern="/(^[a-zA-Z][a-zA-Z\s]{0,35}[a-zA-Z]$)/" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
+        {{-- @error('institute')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror --}}
+      </div>
+      <div class="input-group">
+        <div class="form-group mb-3">
+          <label class="label" for="tujuankunjungan" style="color:#000000">Tujuan Kujungan</label>
+          <select class="custom-select my-1 mr-sm-2" name="tujuankunjungan" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
+            <option selected="false" disabled="disabled">Silakan Pilih Tujuan Kunjungan</option>
+            @foreach ($tujuankunjungan as $p)
+            <option value="{{ $p->id }}">{{$p->tujuankunjungan_type}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick=" run(5, 1);">Previous</div>
+        <button class="index-btn" type="submit" name="submit" style="background: blue;">Submit</button>
+      </div>
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
     </div>
       </div>
   </form>
 
+<<<<<<< HEAD
  <script type="text/javascript">
 
+=======
+<!-- ... Your existing HTML and script ... -->
+
+<script type="text/javascript">
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
   $(function(){
     $("#myForm").parsley();
   })
@@ -314,6 +391,7 @@
 
   // Add change event listener to "Tujuan Kunjungan" dropdown
   $("#purposevtwo").change(function() {
+<<<<<<< HEAD
     $("#btn-submit-1").addClass("d-none")
     $("#btn-submit-2").addClass("d-none")
     
@@ -409,5 +487,103 @@
 
         
   </script>
+=======
+    if (this.value === "1") { // "Kunjungan"
+      run(1, 5); // Go to Form Kunjungan tab
+    } else if (this.value === "2") { // "Permintaan Data"
+      run(1, 2); // Go to Riwayat Pendidikan tab
+    }
+  });
+
+  $('#hp').on('keyup', function (){
+
+$value = $(this).val();
+// alert ($value);
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+    }
+});
+// alert ($value);
+$.ajax({
+
+  type      : 'post',
+  url       : '{{ URL::to('cekcustomer') }}',
+  dataType  : 'json',
+  data      : {'search':$value},
+  success   : function(data)
+  {
+    
+      // dataconv = JSON.parse(data);
+    $.each(data, function (i, id) { 
+      // var $dataString = JSON.stringify(data)
+      // console.log(data[0].name);
+      // alert(data[0].address);
+
+      $('#name').val(data[0].name).attr('readonly', true).css('background-color' , '#DEDEDE').attr('disabled', true);
+      $("#gender option[value="+data[0].gender).attr('selected', 'true');
+      $("#gender").attr('disabled', true);
+      $('#email').val(data[0].email).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#address').val(data[0].address).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#age').val(data[0].age).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#institute').val(data[0].institute).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $('#nipnim').val(data[0].nipnim).attr('readonly', true).css('background-color' , '#DEDEDE');
+      $("#job option[value='"+data[0].id_job).attr('selected', 'true');
+      $("#job").attr('disabled', true);
+      $("#education option[value='"+data[0].id_education).attr('selected', 'true');
+      $("#education").attr('disabled', true);
+      $("#tujuankunjungan option[value="+data[0].tujuankunjungan).attr('selected', 'true');
+      $("#tujuankunjungan").attr('disabled', true);
+    });
+  
+  }
+});
+})
+
+
+$(document).ready (function() {
+$('#myForm').formValidation({
+framework: 'bootstrap',
+excluded: 'disabled',
+icon: {
+valid: 'glyphicon glyphicon-ok',
+invalid: 'glyphicon glyphicon-remove',
+validating: 'glyphicon glyphicon-refresh'
+},
+fields: {
+    emailUser: {
+    validators: {
+    notEmpty: {
+    message: 'Email Tidak Boleh Kosong'
+    },
+    emailAddress: {
+    message: 'Email Tidak Valid'
+    }
+    }
+    },
+}
+})
+});
+
+// function ValidateEmail(mail)
+// {
+// if (/mysite@ourearth.com/.test(emailUser))
+// {
+// return (true)
+// }
+// alert("Masukkan e-Mail Dengan Ben0ar")
+// return (false)
+// }
+
+  // Rest of your code...
+</script>
+
+</body>
+
+</html>
+
+
+
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
 </body>
 </html>

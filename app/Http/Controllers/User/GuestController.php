@@ -36,9 +36,15 @@ class GuestController extends Controller
         $sub_categories = SubCategory::all();
         $categories = Category::all();
         $tujuankunjungan = TujuanKunjungan::all();
+<<<<<<< HEAD
 
         return view('/index', compact('job','education','media','service','sub_categories','categories','purpose', 'purposevoltwo', 'tujuankunjungan'));
         return dd(Session::all());
+=======
+// dd($tujuankunjungan);
+        return view('/index', compact('job','education','media','service','sub_categories','categories','purpose', 'purposevoltwo', 'tujuankunjungan'));
+        // return dd(Session::all());
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
         // $purpose = Purpose::all();
 
         // return view('/index', compact('job','education','media','service','sub_categories','purpose'));
@@ -48,6 +54,7 @@ class GuestController extends Controller
      *  Function untuk validasi Ajax
      */
     public function validationForm(Request $request){
+        // dd($request()->all());
         if ($request->status == ""){
             $validator = Validator::make($request->all(), [
                 'hp' => [   'required', 'between:10,15',
@@ -121,9 +128,23 @@ class GuestController extends Controller
                     break;
                 case 5 :
                     $validator = Validator::make($request->all(), [
+<<<<<<< HEAD
                         'TujuanKunjungan' => 'required|min:1',
                         'institute' => 'required|min:10',
                         ]);
+=======
+                        'institute' => 'required|min:10',
+                        'tujuankunjungan' => 'required|min:1',
+                    ]);
+                    if ($validator->passes()) {
+                        return response()->json(['success'=>'Lolos Validasi #1']);
+                    }
+
+                    return response()->json(['error'=>$validator->errors()->all()]);
+                    break;
+
+                }
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
 
                         if ($validator-passes()){
                             return response()->json(['success'=>'Lolos Validasi #1']);
@@ -136,6 +157,10 @@ class GuestController extends Controller
         }else {
             return response()->json(['error'=>$validator->errors()->all()]);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
     }
 
     public function saveGuest(Request $request){
@@ -149,6 +174,7 @@ class GuestController extends Controller
         // ]);
 
         // if($validator->passes()){
+            
             $name   = $request->name;
             $hp = $request->hp;
             $email   = $request->email;
@@ -156,12 +182,21 @@ class GuestController extends Controller
             $job  = $request->job ? $request->job : 1;
             $gender = $request->gender;
             $age = $request->age;
+<<<<<<< HEAD
             $nipnim= $request->nipnim ? $request->nipnim : 0;
             $institute= $request->institute ? $request->institute : $request->institute2;
             $education = $request->education ? $request->education : 1;
             $purpose = $request->purpose ? $request->purpose : 0;
             $sub_categories =$request->sub_categories ? $request->sub_categories : 0 ;
             $tujuankunjungan = $request->tujuankunjungan;
+=======
+            $nipnim= $request->nipnim;
+            $institute= $request->institute;
+            $education = $request->education;
+            $purpose = $request->purpose;
+            $sub_categories =$request->sub_categories;
+            $tujuankunjungan =$request->tujuankunjungan;
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
 
             if (Customer::where('hp', $hp)->exists()){
                 /**
@@ -189,6 +224,9 @@ class GuestController extends Controller
                $transaction->tujuankunjungan=$request->TujuanKunjungan;
                $transaction->institute = $institute;
                $transaction->save();
+               $tujuankunjungan = new TujuanKunjungan();
+               $tujuankunjungan->tujuankunjungan_type=$request->tujuankunjungan;
+               $tujuankunjungan->save();
 
                Alert::success("Success", "Terimakasih  $name  Sudah menggunakan layanan kami");
                return redirect('/');
@@ -208,7 +246,11 @@ class GuestController extends Controller
                $data->address = $address;
                $data->id_job = $job;
                $data->id_education = $education;
+<<<<<<< HEAD
                $data->id_kunjungan = $tujuankunjungan;
+=======
+               $data->tujuankunjungan = $tujuankunjungan;
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
                $data->save();
 
                /**
@@ -221,6 +263,7 @@ class GuestController extends Controller
                /**
                 * Fetch request to data transaction
                 */
+<<<<<<< HEAD
                 if($request->purposevtwo == 2){
                     $transaction = new Transaction();
                     $transaction->id_customer =$idcustomer;
@@ -231,6 +274,21 @@ class GuestController extends Controller
                     $transaction->id_sub_categories=$request->sub_categories;
                     $transaction->save();
                 }
+=======
+
+               $transaction = new Transaction();
+               $transaction->id_customer =$idcustomer;
+               $transaction->id_media=$request->media;
+               $transaction->id_service=$request->service;
+               $transaction->id_purpose=$request->purpose;
+               $transaction->data=$request->data;
+               $transaction->id_sub_categories=$request->sub_categories;
+            //    $transaction->tujuankunjungan=$request->tujuankunjungan;
+               $transaction->save();
+               $tujuankunjungan = new TujuanKunjungan();
+               $tujuankunjungan->tujuankunjungan_type=$request->tujuankunjungan;
+               $tujuankunjungan->save();
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
 
                Alert::success("Success", "Terimakasih  $name  Sudah menggunakan layanan kami");
                return redirect('/');

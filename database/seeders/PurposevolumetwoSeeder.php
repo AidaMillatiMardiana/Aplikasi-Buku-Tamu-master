@@ -24,4 +24,8 @@ class PurposevolumetwoSeeder extends Seeder
             DB::table('purposevolumetwos')->insert($purpose);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f01cbce271541629c4024aebb5e565c9d9490e47
