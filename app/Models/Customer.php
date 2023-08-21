@@ -10,7 +10,7 @@ class Customer extends Model
 {
     use HasFactory;
     protected $table = "customer";
-    protected $fillable = ['hp','name','gender','email','age','nipnim','institute','address','id_job','id_education'];
+    protected $fillable = ['hp','name','gender','email','age','nipnim','institute','address','id_job','id_education', 'id_kunjungan'];
 
     public function guestEducation() {
         return $this->belongsTo(Education::class, 'id_education');

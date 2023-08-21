@@ -27,12 +27,9 @@
   <span class="step" id="step-2"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
   <span class="step" id="step-3"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
   <span class="step" id="step-4"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
+  <span class="step" id="step-5"><i class="fas fa-check-circle"></i></span>&nbsp;&nbsp;
 </div>
 <br>
-
-    
-
-
     <div class="tab" id="tab-1">
     <h3 style="text-align: center; font-family: sans-serif;">Informasi Pribadi</h3>
 
@@ -60,7 +57,7 @@
       <div class="form-group mb-3">
         <label class="gender" for="gender" style="color:#000000">Jenis Kelamin</label>
         <select class="custom-select my-1 mr-sm-2" name="gender" id="gender" value={{collect(old('gender'))}} required style="font-size: 14px;">
-          <option selected="false" disabled="disabled">
+        <option selected="false" disabled="disabled">Silakan Pilih Jenis Kelamin</option>
           <option value="Pria">Pria</option>
           <option value="Wanita">Wanita</option>
         </select>
@@ -99,192 +96,237 @@
 
       <!-- form tambahan untuk pilih tujuan kunjungan -->
       <div class="form-group mb-3">
-        <label class="purpose" for="purposevtwo" style="color:#000000">Tujuan Kunjungan</label>
+        <label class="purpose" for="purposevtwo" style="color:#000000">Keperluan Anda</label>
         <select class="custom-select my-1 mr-sm-2" name="purposevtwo" id="purposevtwo" required>
-          <option selected disabled></option>
+        <option selected="false" disabled="disabled">Silakan Pilih Keperluan Anda</option>
           @foreach ($purposevoltwo as $purpose2)
             <option value="{{ $purpose2->id }}">{{ $purpose2->purposevtwo }}</option>
           @endforeach
-            <option value="other1">Kunjungan</option>
-            <option value="other2">Permintaan Data</option>
         </select>
       </div>
       <br><br>
-
-      <div class="index-btn-wrapper">
-        <div class="index-btn" onclick="run(1, 2);">Next</div>
-      </div>
     </div>
 
-    <div class="tab" id="tab-2">
-    <h3 style="text-align: center; font-family: sans-serif;">Riwayat Pendidikan</h3>
+    
+    <div class="row" id="tabrow-1">
 
-      <div class="input-group">
-        <label for="institute" style="color:#000000">Nama instansi</label>
-        <input type="text" name="institute" id="institute" class="form-control"
-          placeholder="Silakan isi nama instansi anda" maxlength="35" value="{{old('institute')}}"
-          data-parsley-pattern="/(^[a-zA-Z][a-zA-Z\s]{0,35}[a-zA-Z]$)/" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
-        {{-- @error('institute')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror --}}
-      </div>
-
-      <div class="input-group">
-        <label for="nipnim" style="color:#000000">NIM/NPM</label>
-        <input type="text" name="nipnim" id="nipnim" class="form-control" placeholder="Silakan isi nip/nim anda"
-          maxlength="20" value="{{old('nipnim')}}" onkeypress="return event.charCode >= 48 && event.charCode <=57"
-          data-parsley-type="integer" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
-        {{-- @error('nipnim')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror --}}
-      </div>
-
-      <div class="form-group mb-3">
-        <label class="label" for="job" style="color:#000000">Pekerjaan</label>
-        <select class="custom-select my-1 mr-sm-2" name="job" id="job" required style="font-size: 14px;">
-          <option selected="false" disabled="disabled">Silakan Pilih Pekerjaan</option>
-          @foreach ($job as $p)
-          <option value="{{ $p->id }}">{{$p->job_type}}</option>
-          @endforeach
-        </select>
-      </div><br><br>
-
-      <div class="form-group mb-3">
-        <label class="label" for="education" style="color:#000000">Pendidikan</label>
-        <select class="custom-select my-1 mr-sm-2" name="education" id="education" required style="font-size: 14px;">
-          <option selected="false" disabled="disabled">Silakan Pilih Pendidikan</option>
-          @foreach ($education as $p)
-          <option value="{{ $p->id }}">{{$p->education_type}}</option>
-          @endforeach
-        </select>
-      </div><br><br>
-
-      <div class="index-btn-wrapper">
-        <div class="index-btn" onclick="run(2, 1);">Previous</div>
-        <div class="index-btn" onclick="run(2, 3);">Next</div>
-      </div>
-    </div>
-
-    <div class="tab" id="tab-3">
-    <h3 style="text-align: center; font-family: sans-serif;">Media Pelayanan</h3>
-
-      <div class="input-group">
+      <div class="tab" id="tab-2">
+        <h3 style="text-align: center; font-family: sans-serif;">Riwayat Pendidikan</h3>
+  
+        <div class="input-group">
+          <label for="institute" style="color:#000000">Nama instansi</label>
+          <input type="text" name="institute" id="institute" class="form-control"
+            placeholder="Silakan isi nama instansi anda" maxlength="35" value="{{old('institute')}}"
+            data-parsley-pattern="/(^[a-zA-Z][a-zA-Z\s]{0,35}[a-zA-Z]$)/" data-parsley-trigger="keyup" style="font-size: 14px;"/>
+          {{-- @error('institute')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror --}}
+        </div>
+  
+        <div class="input-group">
+          <label for="nipnim" style="color:#000000">NIM/NPM</label>
+          <input type="text" name="nipnim" id="nipnim" class="form-control" placeholder="Silakan isi nip/nim anda"
+            maxlength="20" value="{{old('nipnim')}}" onkeypress="return event.charCode >= 48 && event.charCode <=57"
+            data-parsley-type="integer" data-parsley-trigger="keyup" required style="font-size: 14px;"/>
+          {{-- @error('nipnim')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror --}}
+        </div>
+  
         <div class="form-group mb-3">
-          <label class="label" for="media" style="color:#000000">Media Pelayanan</label>
-          <select class="custom-select my-1 mr-sm-2" name="media" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silakan Pilih Media Pelayanan</option>
-            @foreach ($media as $p)
-            <option value="{{ $p->id }}">{{$p->media_type}}</option>
+          <label class="label" for="job" style="color:#000000">Pekerjaan</label>
+          <select class="custom-select my-1 mr-sm-2" name="job" id="job" style="font-size: 14px;">
+            <option selected="false" disabled="disabled">Silakan Pilih Pekerjaan</option>
+            @foreach ($job as $p)
+            <option value="{{ $p->id }}">{{$p->job_type}}</option>
             @endforeach
           </select>
+        </div><br><br>
+  
+        <div class="form-group mb-3">
+          <label class="label" for="education" style="color:#000000">Pendidikan</label>
+          <select class="custom-select my-1 mr-sm-2" name="education" id="education" style="font-size: 14px;">
+            <option selected="false" disabled="disabled">Silakan Pilih Pendidikan</option>
+            @foreach ($education as $p)
+            <option value="{{ $p->id }}">{{$p->education_type}}</option>
+            @endforeach
+          </select>
+        </div><br><br>
+  
+        <div class="index-btn-wrapper">
+          <div class="index-btn" onclick="run(2, 1);">Previous</div>
+          <div class="index-btn" onclick="run(2, 3);">Next</div>
         </div>
       </div>
-
-      <div class="input-group">
-        <div class="form-group mb-3">
-          <label class="label" for="media" style="color:#000000">Kebutuhan Data</label>
-          <select class="custom-select my-1 mr-sm-2" name="sub_categories" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silakan Pilih Kebutuhan Data</option>
-            @foreach($categories as $group)
-            <optgroup label="{{$group->categories_type }}">
-              @foreach ($sub_categories as $s)
-              @if($s->id_categories == $group->id)
-              <option value="{{ $s->id}}">{{$s->sub_categories_type}}</option>
-              @endif
+  
+      <div class="tab" id="tab-3">
+        <h3 style="text-align: center; font-family: sans-serif;">Media Pelayanan</h3>
+  
+        <div class="input-group">
+          <div class="form-group mb-3">
+            <label class="label" for="media" style="color:#000000">Media Pelayanan</label>
+            <select class="custom-select my-1 mr-sm-2" name="media" id="inlineFormCustomSelectPref" style="font-size: 14px;">
+              <option selected="false" disabled="disabled">Silakan Pilih Media Pelayanan</option>
+              @foreach ($media as $p)
+              <option value="{{ $p->id }}">{{$p->media_type}}</option>
               @endforeach
-            </optgroup>
-            @endforeach
-          </select>
+            </select>
+          </div>
+        </div>
+  
+        <div class="input-group">
+          <div class="form-group mb-3">
+            <label class="label" for="media" style="color:#000000">Kebutuhan Data</label>
+            <select class="custom-select my-1 mr-sm-2" name="sub_categories" id="inlineFormCustomSelectPref" style="font-size: 14px;">
+              <option selected="false" disabled="disabled">Silakan Pilih Kebutuhan Data</option>
+              @foreach($categories as $group)
+              <optgroup label="{{$group->categories_type }}">
+                @foreach ($sub_categories as $s)
+                @if($s->id_categories == $group->id)
+                <option value="{{ $s->id}}">{{$s->sub_categories_type}}</option>
+                @endif
+                @endforeach
+              </optgroup>
+              @endforeach
+            </select>
+          </div>
+        </div>
+  
+        <div class="input-group">
+          <div class="form-group mb-3">
+            <label class="label" for="service" style="color:#000000">Jenis Pelayanan</label>
+            <select class="custom-select my-1 mr-sm-2" name="service" id="inlineFormCustomSelectPref" style="font-size: 14px;">
+              <option selected="false" disabled="disabled">Silakan Pilih Jenis Pelayanan</option>
+              @foreach ($service as $j)
+              <option value="{{ $j->id }}">{{$j->service_type}}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+  
+        <div class="index-btn-wrapper">
+          <div class="index-btn" onclick="run(3, 2);">Previous</div>
+          <div class="index-btn" onclick="run(3, 4);">Next</div>
         </div>
       </div>
-
-      <div class="input-group">
-        <div class="form-group mb-3">
-          <label class="label" for="service" style="color:#000000">Jenis Pelayanan</label>
-          <select class="custom-select my-1 mr-sm-2" name="service" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silakan Pilih Jenis Pelayanan</option>
-            @foreach ($service as $j)
-            <option value="{{ $j->id }}">{{$j->service_type}}</option>
-            @endforeach
-          </select>
+  
+      <div class="tab" id="tab-4">
+        <h3 style="text-align: center; font-family: sans-serif;">Tujuan Permintaan Data</h3>
+  
+        <div class="input-group">
+          <div class="form-group mb-3">
+            <label class="label" for="purpose" style="color:#000000">Tujuan</label>
+            <select class="custom-select my-1 mr-sm-2" name="purpose" id="inlineFormCustomSelectPref" style="font-size: 14px;">
+              <option selected="false" disabled="disabled">Silakan Pilih Tujuan</option>
+              @foreach ($purpose as $p)
+              <option value="{{ $p->id }}">{{$p->purpose_type}}</option>
+              @endforeach
+            </select>
+          </div>
         </div>
-      </div>
-
-      <div class="index-btn-wrapper">
-        <div class="index-btn" onclick="run(3, 2);">Previous</div>
-        <div class="index-btn" onclick="run(3, 4);">Next</div>
+  
+        <div class="input-group">
+          <label for="data" style="color:#000000">Catatan Data</label>
+          <textarea type="text" name="data" id="data" placeholder="Silakan isi data spesifik yang anda perlukan"
+            class="form-control" rows="10" cols="55" maxlength="50" value="{{old('data')}}"
+            onkeypress="return event.charCode < 48 || event.charCode>57" data-parsley-trigger="keyup" style="font-size: 14px;"></textarea>
+        </div>
+  
+        <div class="index-btn-wrapper">
+          <div class="index-btn" onclick=" run(4, 3);">Previous</div>
+          <button class="index-btn" type="submit" name="submit" style="background: blue;" id="btn-submit-1">Submit</button>
+        </div>
       </div>
     </div>
 
-    <div class="tab" id="tab-4">
-    <h3 style="text-align: center; font-family: sans-serif;">Tujuan</h3>
-
-      <div class="input-group">
-        <div class="form-group mb-3">
-          <label class="label" for="purpose" style="color:#000000">Tujuan</label>
-          <select class="custom-select my-1 mr-sm-2" name="purpose" id="inlineFormCustomSelectPref" required style="font-size: 14px;">
-            <option selected="false" disabled="disabled">Silakan Pilih Tujuan</option>
-            @foreach ($purpose as $p)
-            <option value="{{ $p->id }}">{{$p->purpose_type}}</option>
-            @endforeach
-          </select>
+    <div class="row" id="tabrow-2">
+      <div class="tab" id="tab-5">
+        <h3 style="text-align: center; font-family: sans-serif;">Form Kunjungan</h3>
+        <div class="input-group">
+          <label for="institute" style="color:#000000">Nama instansi</label>
+          <input type="text" name="institute2" id="institute" class="form-control"
+            placeholder="Silakan isi nama instansi anda" maxlength="35" value="{{old('institute')}}"
+            data-parsley-pattern="/(^[a-zA-Z][a-zA-Z\s]{0,35}[a-zA-Z]$)/" data-parsley-trigger="keyup" style="font-size: 14px;"/>
+          {{-- @error('institute')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror --}}
+          </div>
+  
+          <div class="form-group mb-3">
+            <label class="label" for="tujuankunjungan" style="color:#000000">Tujuan Kujungan</label>
+            <select class="custom-select my-1 mr-sm-2" name="tujuankunjungan" id="inlineFormCustomSelectPref" style="font-size: 14px;">
+              <option selected="false" disabled="disabled">Silakan Pilih Tujuan Kunjungan</option>
+              @foreach ($tujuankunjungan as $tk)
+              <option value="{{ $p->id }}">{{$tk->tujuankunjungan_type}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="index-btn-wrapper">
+          <div class="index-btn" onclick=" run(5, 1);">Previous</div>
+          <button class="index-btn" type="submit" name="submit" id="btn-submit-2" style="background: blue;">Submit</button>
         </div>
       </div>
-
-      <div class="input-group">
-        <label for="data" style="color:#000000">Data</label>
-        <textarea type="text" name="data" id="data" placeholder="Silakan isi data spesifik yang anda perlukan"
-          class="form-control" rows="10" cols="55" maxlength="50" value="{{old('data')}}"
-          onkeypress="return event.charCode < 48 || event.charCode>57" data-parsley-trigger="keyup" required style="font-size: 14px;"></textarea>
-      </div>
-
-      <div class="index-btn-wrapper">
-        <div class="index-btn" onclick=" run(4, 3);">Previous</div>
-        <button class="index-btn" type="submit" name="submit" style="background: blue;">Submit</button>
-      </div>
     </div>
+      </div>
   </form>
 
-  <script type="text/javascript">
-    $(function(){
-      $("#myForm").parsley();
-    })
-      // Default tab
-      $(".tab").css("display", "none");
-      $("#tab-1").css("display", "block");
+ <script type="text/javascript">
 
-      function run(hideTab, showTab){
-        if(hideTab < showTab){ // If not press previous button
-          // Validation if press next button
-          var currentTab = 0;
-          x = $('#tab-'+hideTab);
-          y = $(x).find("input")
-          z = $(x).find("select")
-          for (i = 0; i < y.length; i++){
-            if (y[i].value == ""){
-              $(y[i]).css("background", "#ffdddd");
-              return false;
-            }
-          }
-          for (i = 0; i < z.length; i++){
-            if (z[i].value == ""){
-              $(z[i]).css("background", "#ffdddd");
-              return false;
-            }
-          }
+  $(function(){
+    $("#myForm").parsley();
+  })
+
+  // Default tab
+  $(".tab").css("display", "none");
+  $("#tab-1").css("display", "block");
+
+  function run(hideTab, showTab){
+    if(hideTab < showTab){ // If not press previous button
+      // Validation if press next button
+      var currentTab = 0;
+      x = $('#tab-'+hideTab);
+      y = $(x).find("input")
+      z = $(x).find("select")
+      for (i = 0; i < y.length; i++){
+        if (y[i].value == ""){
+          $(y[i]).css("background", "#ffdddd");
+          return false;
         }
-
-        // Progress bar
-        for (i = 1; i < showTab; i++){
-          $("#step-"+i).css("opacity", "1");
-        }
-
-        // Switch tab
-        $("#tab-"+hideTab).css("display", "none");
-        $("#tab-"+showTab).css("display", "block");
-        $("input").css("background", "#fff");
       }
+      for (i = 0; i < z.length; i++){
+        if (z[i].value == ""){
+          $(z[i]).css("background", "#ffdddd");
+          return false;
+        }
+      }
+    }
 
+    // Progress bar
+    for (i = 1; i < showTab; i++){
+      $("#step-"+i).css("opacity", "1");
+    }
+
+    // Switch tab
+    $("#tab-"+hideTab).css("display", "none");
+    $("#tab-"+showTab).css("display", "block");
+    $("input").css("background", "#fff");
+  }
+
+  // Add change event listener to "Tujuan Kunjungan" dropdown
+  $("#purposevtwo").change(function() {
+    $("#btn-submit-1").addClass("d-none")
+    $("#btn-submit-2").addClass("d-none")
+    
+    if (this.value === "1") { // "Kunjungan"
+      run(1, 5); // Go to Media Pelayanan tab
+      $("#btn-submit-1").remove()
+      $("#tabrow-1").remove()
+    } else if (this.value === "2") { // "Permintaan Data"
+      run(1, 2); // Go to Riwayat Pendidikan tab
+      $("#btn-submit-2").remove()
+      $("#tabrow-2").remove()
+    }
+  });
 
       $('#hp').on('keyup', function (){
 
@@ -323,36 +365,37 @@
               $("#job").attr('disabled', true);
               $("#education option[value='"+data[0].id_education).attr('selected', 'true');
               $("#education").attr('disabled', true);
+              $("#tujuankunjungan option[value='"+data[0].id_job).attr('selected', 'true');
+              $("#tujuankunjungan").attr('disabled', true);
             });
           
           }
         });
       })
 
-
-      $(document).ready (function() {
-        $('#myForm').formValidation({
-        framework: 'bootstrap',
-        excluded: 'disabled',
-        icon: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            emailUser: {
-            validators: {
-            notEmpty: {
-            message: 'Email Tidak Boleh Kosong'
-            },
-            emailAddress: {
-            message: 'Email Tidak Valid'
-            }
-            }
-            },
-        }
-        })
-        });
+      // $(document).ready (function() {
+        // $('#myForm').formValidation({
+        // framework: 'bootstrap',
+        // excluded: 'disabled',
+        // icon: {
+        // valid: 'glyphicon glyphicon-ok',
+        // invalid: 'glyphicon glyphicon-remove',
+        // validating: 'glyphicon glyphicon-refresh'
+        // },
+        // fields: {
+        //     emailUser: {
+        //     validators: {
+        //     notEmpty: {
+        //     message: 'Email Tidak Boleh Kosong'
+        //     },
+        //     emailAddress: {
+        //     message: 'Email Tidak Valid'
+        //     }
+        //     }
+        //     },
+        // }
+        // })
+        // });
 
         // function ValidateEmail(mail)
         // {
@@ -364,9 +407,7 @@
         // return (false)
         // }
 
+        
   </script>
-
-
 </body>
-
 </html>

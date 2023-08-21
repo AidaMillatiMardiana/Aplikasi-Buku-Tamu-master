@@ -26,8 +26,6 @@ use App\Http\Controllers\RingkasanController;
 Route::get('/bukutamu', [GuestController::class, 'formTamu'])->name('/');
 Route::post('/cekcustomer', [GuestController::class, 'cekcustomer'])->name('cekcustomer');
 Route::resource('formTamu', GuestController::class);
-
-
 /**
  * Route Uji Coba Validasi
  */

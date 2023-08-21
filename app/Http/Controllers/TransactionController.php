@@ -11,6 +11,8 @@ use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Feedback;
 use App\Models\Purpose;
+use App\Models\TujuanKunjungan;
+use App\Models\purposevolumetwo;
 use Illuminate\Support\Facades\Hash;
 use App\Exports\TransactionExport;
 use Excel;
@@ -84,6 +86,7 @@ class TransactionController extends Controller
         $transaction->data=$request->data;
         $transaction->id_sub_categories=$request->sub_categories;
         $transaction->id_categories=$request->categories;
+        $transaction->tujuankunjungan=$request->TujuanKunjungan;
         // $transaction->service=$request->feedback;
         // $transaction->facility=$request->feedback;
         // $transaction->dataqualities=$request->feedback;
@@ -113,13 +116,15 @@ class TransactionController extends Controller
         $transaction=Transaction::with('Service')->find($id);
         $transaction=Transaction::with('SubCategory')->find($id);
         $transaction=Transaction::with('Purpose')->find($id);
-
+        $transaction=Transaction::with('TujuanKunjungan')->find($id);
+        
         $transaction->id_customer=$request->customer;
         $transaction->id_media=$request->media;
         $transaction->id_service=$request->service;
         $transaction->id_purpose=$request->purpose;
         $transaction->data=$request->data;
         $transaction->id_sub_categories=$request->sub_categories;
+        $transaction->tujuankunjungan=$request->TujuanKunjungan;
 
         $transaction->save();
 
